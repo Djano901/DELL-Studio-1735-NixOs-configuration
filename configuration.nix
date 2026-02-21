@@ -88,15 +88,9 @@
   # };
 
   # programs.firefox.enable = true;
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-    extraPackages = with pkgs; [
-      foot
-      wofi
-      waybar
-    ];
-  };
+  programs.sway.enable = true;
+
+  xdg.portal.wlr.enable = true;
 
   programs.xwayland.enable = true;
 
