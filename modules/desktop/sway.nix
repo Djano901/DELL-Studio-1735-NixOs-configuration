@@ -19,14 +19,16 @@
   
   wayland.windowManager.sway = {
     enable = true;
-	extraConfig = ''
-		exec pkill swaybg; ${pkgs.swaybg}/bin/swaybg -i /home/Jean/wallpaper/gargantua.jpg -m fill
-	'';
     
     config = {
       modifier = "Mod4";
       terminal = "${pkgs.alacritty}/bin/alacritty";
-
+	  startup = [
+	  	{
+	  		command = "pkill swaybg; ${pkgs.swaybg}/bin/swaybg -i /home/Jean/wallpaper/gargantua.jpg -m fill";
+	  		always = true;
+	  	}
+	  ];
       keybindings = let
         mod = "Mod4";
       in pkgs.lib.mkOptionDefault {
