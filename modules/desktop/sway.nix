@@ -2,8 +2,8 @@
 
 {
   home.packages = with pkgs; [
-  	swaybg
   	waybar
+  	swaybg
   ];
 
   programs.alacritty = {
@@ -15,11 +15,32 @@
   		};
   };
 
-
+  # programs.fuzzel = {
+  # 	enable = true;
+  # 	settings = {
+  # 		main = {
+  # 			font = "DejaVu Sans:size=12";
+  # 			terminal = "${pkgs.alacritty}/bin/alacritty";
+  # 			prompt = ">  ";
+  # 			width = 40;
+  # 			border-width = 2;
+  # 			border-radius = 5;
+  # 		};
+  # 	};
+  # 	colors = {
+  # 		background = "1d1f21fa";
+  # 		text = "c5c8c6ff";
+  # 		match = "81a2beff";
+  # 		selection = "373b41ff";
+  # 		selection-text = "ffffffff";
+  # 		border = "81a2beff";
+  # 	};
+  # };
   
   wayland.windowManager.sway = {
     enable = true;
-    
+    wrapperFeatures.gtk = true;
+          
     config = {
       modifier = "Mod4";
       terminal = "${pkgs.alacritty}/bin/alacritty";
@@ -29,6 +50,9 @@
 	  		always = true;
 	  	}
 	  ];
+	  
+	  menu = "${pkgs.fuzzel}/bin/fuzzel";
+	  
       keybindings = let
         mod = "Mod4";
       in pkgs.lib.mkOptionDefault {
@@ -69,4 +93,5 @@
       
     };
   };
+  # systemd.user.targets.sway-session.enable = true;
 }
