@@ -15,27 +15,39 @@
   		};
   };
 
-  # programs.fuzzel = {
-  # 	enable = true;
-  # 	settings = {
-  # 		main = {
-  # 			font = "DejaVu Sans:size=12";
-  # 			terminal = "${pkgs.alacritty}/bin/alacritty";
-  # 			prompt = ">  ";
-  # 			width = 40;
-  # 			border-width = 2;
-  # 			border-radius = 5;
-  # 		};
-  # 	};
-  # 	colors = {
-  # 		background = "1d1f21fa";
-  # 		text = "c5c8c6ff";
-  # 		match = "81a2beff";
-  # 		selection = "373b41ff";
-  # 		selection-text = "ffffffff";
-  # 		border = "81a2beff";
-  # 	};
-  # };
+  programs.fuzzel = {
+  	enable = true;
+  	settings = {
+  		main = {
+  			font = "Lexxend:size=12";
+  			terminal = "${pkgs.alacritty}/bin/alacritty";
+  			prompt = ">  ";
+  			layer = "overlay";
+  			width = 35;
+  			horizontal-pad = 25;
+  			vertical-pad =15;
+  			inner-pad = 10;
+  			line-height = 25;
+  			fields = "name,generic,comment,executable";
+  			incons-enabled = "yes";
+  			icon-theme = "Papirus-Dark";
+  			# border-width = 2;
+  			# border-radius = 8;
+  		};
+  		colors = {
+  			background = "1d1f21fa";
+  			text = "c5c8c6ff";
+  			match = "81a2beff";
+  			selection = "373b41ff";
+  			selection-text = "ffffffff";
+  			border = "81a2beff";
+  		};
+  		border = {
+  			width = 2;
+  			radius = 8;
+  		};
+  	};
+  };
   
   wayland.windowManager.sway = {
     enable = true;
