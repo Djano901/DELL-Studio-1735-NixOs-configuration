@@ -1,5 +1,8 @@
 {config, pkgs, lib, ...}:
 
+let
+	colors = import ./colors.nix;
+in
 {
   home.packages = with pkgs; [
   	waybar
@@ -35,12 +38,18 @@
   			# border-radius = 8;
   		};
   		colors = {
-  			background = "1d1f21fa";
-  			text = "c5c8c6ff";
-  			match = "81a2beff";
-  			selection = "373b41ff";
-  			selection-text = "ffffffff";
-  			border = "81a2beff";
+  			# background = "1d1f21fa";
+			# text = "c5c8c6ff";
+			# match = "81a2beff";
+			# selection = "373b41ff";
+			# selection-text = "ffffffff";
+			# border = "81a2beff";
+  			background = "${builtins.substring 1 6 colors.palette.bg_main}ff";
+  			text = "${builtins.substring 1 6 colors.palette.fg_main}ff";
+  			match = "${builtins.substring 1 6 colors.palette.accent}ff";
+  			selection = "${builtins.substring 1 6 colors.palette.bg_alt}ff";
+  			selection-text = "${builtins.substring 1 6 colors.palette.active}ff";
+  			border = "${builtins.substring 1 6 colors.palette.border_focus}ff";
   		};
   		border = {
   			width = 2;
@@ -48,7 +57,9 @@
   		};
   	};
   };
-  
+
+
+
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
@@ -56,6 +67,30 @@
     config = {
       modifier = "Mod4";
       terminal = "${pkgs.alacritty}/bin/alacritty";
+      window.titlebar = false;
+      window.border = 1;
+      # smartBorders = "on";
+      gaps = {
+      	inner = 8;
+      	outer = 4;
+      };
+	  colors = {
+	  	focused = {
+	  		background = colors.palette.accent;
+	  		border = colors.palette.border_focus;
+	  		childBorder = colors.palette.border_focus;
+	  		indicator = colors.palette.active;
+	  		text = colors.palette.bg_main;
+	  	};
+	    focusedInactive = {
+	    	background = colors.palette.bg_alt;
+	    	border = colors.palette.border_normal;
+	    	childBorder = colors.palette.border_normal;
+	    	indicator = colors.palette.bg_alt;
+	    	text = colors.palette.fg_muted;
+	    };
+	  };
+      
 	  startup = [
 	  	{
 	  		command = "pkill swaybg; ${pkgs.swaybg}/bin/swaybg -i /home/Jean/wallpaper/gargantua.jpg -m fill";
@@ -99,9 +134,9 @@
         };
       };
 
-	  bars = [
-	  	{ command = "${pkgs.waybar}/bin/waybar"; }
-	  ];
+	  # bars = [
+	  # 	{ command = "${pkgs.waybar}/bin/waybar"; }
+	  # ];
       
     };
   };
