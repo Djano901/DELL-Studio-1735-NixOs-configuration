@@ -1,0 +1,45 @@
+warning: Git tree '/home/Jean/nixos-config' is dirty
+building the system configuration...
+warning: Git tree '/home/Jean/nixos-config' is dirty
+error:
+       … while calling the 'head' builtin
+         at /nix/store/59c65vmrl55gcgqaam9pxrcvqkrgvd9g-source/lib/attrsets.nix:1696:13:
+         1695|           if length values == 1 || pred here (elemAt values 1) (head values) then
+         1696|             head values
+             |             ^
+         1697|           else
+
+       … while evaluating the attribute 'value'
+         at /nix/store/59c65vmrl55gcgqaam9pxrcvqkrgvd9g-source/lib/modules.nix:1118:7:
+         1117|     // {
+         1118|       value = addErrorContext "while evaluating the option `${showOption loc}':" value;
+             |       ^
+         1119|       inherit (res.defsFinal') highestPrio;
+
+       … while evaluating the option `system.build.toplevel':
+
+       … while evaluating definitions from `/nix/store/59c65vmrl55gcgqaam9pxrcvqkrgvd9g-source/nixos/modules/system/activation/top-level.nix':
+
+       … while evaluating the option `warnings':
+
+       … while evaluating definitions from `/nix/store/59c65vmrl55gcgqaam9pxrcvqkrgvd9g-source/nixos/modules/system/boot/systemd.nix':
+
+       … while evaluating the option `systemd.services.home-manager-Jean.serviceConfig':
+
+       … while evaluating definitions from `/nix/store/648ips4i31a5lind77hyzx9sj76v6skf-source/nixos':
+
+       … while evaluating the option `home-manager.users.Jean.home.file.".mozilla/firefox/Hard/user.js".source':
+
+       … while evaluating definitions from `/nix/store/648ips4i31a5lind77hyzx9sj76v6skf-source/modules/files.nix':
+
+       … while evaluating the option `home-manager.users.Jean.home.file.".mozilla/firefox/Hard/user.js".text':
+
+       … while evaluating definitions from `/nix/store/648ips4i31a5lind77hyzx9sj76v6skf-source/modules/programs/firefox':
+
+       (stack trace truncated; use '--show-trace' to show the full, detailed trace)
+
+       error: The option `home-manager.users.Jean.programs.firefox.profiles.Hard.settings."browser.startup.homepage"' has conflicting definition values:
+       - In `/nix/store/59c65vmrl55gcgqaam9pxrcvqkrgvd9g-source/flake.nix': "chrome://browser/content/blanktab.html"
+       - In `/nix/store/di0z0xm0qjmyxmjwkxgans1a4i0iplvg-source/modules/desktop/firefox.nix': "https://nixos.org"
+       Use `lib.mkForce value` or `lib.mkDefault value` to change the priority on any of these definitions.
+Command 'nix --extra-experimental-features 'nix-command flakes' build --print-out-paths '.#nixosConfigurations."nix-dell".config.system.build.toplevel' --no-link' returned non-zero exit status 1.
