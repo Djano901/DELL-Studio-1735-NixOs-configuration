@@ -5,6 +5,8 @@
   	./modules/desktop/sway.nix
   	./modules/desktop/waybar.nix
   	./modules/desktop/firefox.nix
+  	./modules/dev/ssh.nix
+  	./modules/dev/git.nix
   ];
 
 
@@ -24,11 +26,11 @@
 
   programs.home-manager.enable = true;
 
-  programs.git = {
-    enable = true;
-    userName = "Jean";
-    userEmail = "dot.com";
-  };
+  # programs.git = {
+  #   enable = true;
+  #   userName = "Jean";
+  #   userEmail = "dot.com";
+  # };
 
 
 }
