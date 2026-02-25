@@ -19,6 +19,10 @@ in
 		# };
 
 		policies = {
+			DisableSetDesktopBackground = true;
+
+			DisableSessionRestore = true;
+			
 			ExtensionSettings = {
 				"*" = {
 					installation_mode = "blocked";
@@ -67,6 +71,19 @@ in
 				"general.useragent.locale" = "fr_FR";
 
 				# "dom.security.https_only_mode" = true;
+				"browser.startup.page" = 1;
+				"browser.startup.couldRestoreSession" = false;
+				"browser.sessionstore.resume_from_crash" = false;
+				"browser.sessionhistory.max_entries" = 0;
+				"browser.sessionstore.warnOnQuit" = false;
+				"browser.sessionstore.privacy_level" = 2;
+				"browser.tabs.restoreondemand" = false;
+				"browser.sessionstore.resume_session_once" = false;
+				"browser.sessionstore.resuming_after_os_restart" = false;
+				"browser.sessionstore.interval" = 36000000;
+				"browser.sessionstore.max_resumed_crashes" = 0;
+				"browser.sessionstore.max_tabs_undo" = 0;
+				"browser.sessionstore.maw_window_undo" = 0;
 
 				"places.history.enabled" = false;
 				"privacy.globalprivacycontrol.enabled" = true;
@@ -114,6 +131,11 @@ in
 				"extensions.enabledScope" = 15;
 				
 			};
+
+			# extraConfig = ''
+			# 	user_pref("privacy.sanitize.sanitizeOnShutDown", true);
+			# 	user_pref("privacy.clearOnShutDown.history", true);
+			# '';
 		};
 	};
 }
