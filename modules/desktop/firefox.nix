@@ -72,12 +72,16 @@ in
 
 				# "dom.security.https_only_mode" = true;
 				"browser.startup.page" = 1;
+				"browser.startup.homepage" = "About:blank";
+				"browser.privatebrowsing.forceMediaMemoryCache" = true;
 				"browser.startup.couldRestoreSession" = false;
 				"browser.sessionstore.resume_from_crash" = false;
+				"browser.sessionstore.maxconcurrenttabs" = 0;
 				"browser.sessionhistory.max_entries" = 0;
 				"browser.sessionstore.warnOnQuit" = false;
 				"browser.sessionstore.privacy_level" = 2;
-				"browser.tabs.restoreondemand" = false;
+				"browser.sessionstore..restore_on_demand" = false;
+				"browser.sessionstore.perist_closed_tabs_between_sessions" = false;
 				"browser.sessionstore.resume_session_once" = false;
 				"browser.sessionstore.resuming_after_os_restart" = false;
 				"browser.sessionstore.interval" = 36000000;
@@ -92,12 +96,12 @@ in
 				"privacy.fingerprintingProtection" = true;
 				"privacy.sanitize.sanitizeOnShutDown" = true;
 				"privacy.sanitize.timeSpan" = 0;
-				"privacy.clearOnShutdown.history" = true;
-				"privacy.clearOnShutdown.downloads" = true;
-				"privacy.clearOnShutdown.sessions" = true;
-				"privacy.clearOnShutdown.formdata" = true;
-				"privacy.clearOnShutdown.cookies" = true;
-				"privacy.clearOnShutdown.cache" = true;
+				"privacy.sanitize.clearOnShutdown.history" = true;
+				"privacy.sanitize.clearOnShutdown.downloads" = true;
+				"privacy.sanitize.clearOnShutdown.sessions" = true;
+				"privacy.sanitize.clearOnShutdown.formdata" = true;
+				"privacy.sanitize.clearOnShutdown.cookies" = true;
+				"privacy.sanitize.clearOnShutdown.cache" = true;
 				"dom.battery.enabled" = "false";
 				"browser.newtabpage.enabled" = false;
 				"browser.download.useDownloadDir" = false;
