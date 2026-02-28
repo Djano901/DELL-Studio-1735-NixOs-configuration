@@ -100,33 +100,71 @@ in
 	  
 	  menu = "${pkgs.fuzzel}/bin/fuzzel";
 	  
-      keybindings = let
-        mod = "Mod4";
-      in pkgs.lib.mkOptionDefault {
-        # --- Worspace ---
-        "${mod}+ampersand" = "workspace number 1";
-        "${mod}+eacute" = "workspace number 2";
-        "${mod}+quotedbl" = "workspace number 3";
-        "${mod}+apostrophe" = "workspace number 4";
-        "${mod}+parenleft" = "workspace number 5";
-        "${mod}+minus" = "workspace number 6";
-        "${mod}+egrave" = "workspace number 7";
-        "${mod}+underscore" = "workspace number 8";
-        "${mod}+ccedilla" = "workspace number 9";                
-        "${mod}+agrave" = "workspace number 10";
+#       keybindings = let
+#         mod = "Mod4";
+#       in pkgs.lib.mkOptionDefault {
+#         # --- Worspace ---
+#         "${mod}+ampersand" = "workspace number 1";
+#         "${mod}+eacute" = "workspace number 2";
+#         "${mod}+quotedbl" = "workspace number 3";
+#         "${mod}+apostrophe" = "workspace number 4";
+#         "${mod}+parenleft" = "workspace number 5";
+#         "${mod}+minus" = "workspace number 6";
+#         "${mod}+egrave" = "workspace number 7";
+#         "${mod}+underscore" = "workspace number 8";
+#         "${mod}+ccedilla" = "workspace number 9";                
+#         "${mod}+agrave" = "workspace number 10";
+# 
+#         # --- Déplacer les fenêtres ---
+#         "${mod}+Shift+ampersand" = "move container to workspace number 1";
+#         "${mod}+Shift+eacute" = "move container to workspace number 2";
+#         "${mod}+Shift+quotedbl" = "move container to workspace number 3";
+#         "${mod}+Shift+apostrophe" = "move container to workspace number 4";
+#         "${mod}+Shift+parenleft" = "move container to workspace number 5";
+#         "${mod}+Shift+minus" = "move container to workspace number 6";
+#         "${mod}+Shift+egrave" = "move container to workspace number 7";
+#         "${mod}+Shift+underscore" = "move container to workspace number 8";
+#         "${mod}+Shift+ccedilla" = "move container to workspace number 9";                
+#         "${mod}+Shift+agrave" = "move container to workspace number 10";                
+#       };
 
-        # --- Déplacer les fenêtres ---
-        "${mod}+Shift+ampersand" = "move container to workspace number 1";
-        "${mod}+Shift+eacute" = "move container to workspace number 2";
-        "${mod}+Shift+quotedbl" = "move container to workspace number 3";
-        "${mod}+Shift+apostrophe" = "move container to workspace number 4";
-        "${mod}+Shift+parenleft" = "move container to workspace number 5";
-        "${mod}+Shift+minus" = "move container to workspace number 6";
-        "${mod}+Shift+egrave" = "move container to workspace number 7";
-        "${mod}+Shift+underscore" = "move container to workspace number 8";
-        "${mod}+Shift+ccedilla" = "move container to workspace number 9";                
-        "${mod}+Shift+agrave" = "move container to workspace number 10";                
-      };
+		keybindings = let
+        	mod = "Mod4";
+        in pkgs.lib.mkOptionDefault {
+	        # --- Volume (Touches tactiles & Raccourcis) ---
+	        "XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+";
+	        "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
+	        "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+
+	        # Raccourcis de secours (Puisque + et - sont pris par les Workspaces)
+	        "${mod}+Shift+Up" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+";
+	        "${mod}+Shift+Down" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
+	        "${mod}+m" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+
+	        # --- Workspace ---
+	        "${mod}+ampersand" = "workspace number 1";
+	        "${mod}+eacute" = "workspace number 2";
+	        "${mod}+quotedbl" = "workspace number 3";
+	        "${mod}+apostrophe" = "workspace number 4";
+	        "${mod}+parenleft" = "workspace number 5";
+	        "${mod}+minus" = "workspace number 6";
+	        "${mod}+egrave" = "workspace number 7";
+	        "${mod}+underscore" = "workspace number 8";
+	        "${mod}+ccedilla" = "workspace number 9";
+	        "${mod}+agrave" = "workspace number 10";
+
+	        # --- Déplacer les fenêtres ---
+	        "${mod}+Shift+ampersand" = "move container to workspace number 1";
+	        "${mod}+Shift+eacute" = "move container to workspace number 2";
+	        "${mod}+Shift+quotedbl" = "move container to workspace number 3";
+	        "${mod}+Shift+apostrophe" = "move container to workspace number 4";
+	        "${mod}+Shift+parenleft" = "move container to workspace number 5";
+	        "${mod}+Shift+minus" = "move container to workspace number 6";
+	        "${mod}+Shift+egrave" = "move container to workspace number 7";
+	        "${mod}+Shift+underscore" = "move container to workspace number 8";
+	        "${mod}+Shift+ccedilla" = "move container to workspace number 9";
+	        "${mod}+Shift+agrave" = "move container to workspace number 10";                
+	      };
 
       input = {
         "type:keyboard" = {

@@ -14,7 +14,24 @@ in
   			height = 20;
   			modules-left = [ "sway/workspaces" "sway/mode" ];
   			modules-center = [ "clock" ];
-  			modules-right = [ "cpu" "memory" "network" "battery" "tray"];
+  			modules-right = [ "cpu" "memory" "network#vpn" "battery" "pulseaudio" "tray"];
+
+			"cpu" = {
+			    format = "󰍛 {usage}%";
+			};
+			
+			"memory" = {
+			    format = "󰾆 {percentage}%";
+			};
+			
+			"battery" = {
+			    states = {
+			        warning = 30;
+			        critical = 15;
+			    };
+			    format = "{icon} {capacity}%";
+			    format-icons = ["󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
+			};
 
 			"sway/workspaces" = {
 				format = "{name}";
@@ -23,16 +40,34 @@ in
 				disable-scroll = true;
 			};
 
-  			"clock" = {
-  				format = "{:%H:%M | %d/%m}";
-  				tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+			"clock" = {
+			    format = "{:%e %b  %H:%M}";
+			    tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+			};
+
+  			"network#vpn" = {
+  				interface = "wgnord";
+  				format = "󰒄 {ifname}";
+  				format-disconnect = "󰒅 OFF";
+  				tooltip-format = "VPN: {ifname} | {ipaddr}";
   			};	
+
+  			"pulseaudio" = {
+  			    format = "{icon} {volume}%";
+  			    format-muted = "󰝟 Muted";
+  			    format-icons = {
+  			        default = ["󰕿" "󰖀" "󰕾"];
+  			    };
+  			    on-click = "pavucontrol"; # Ouvre le mixeur au clic
+  			};
   		};
   	};
   	style = ''
   	    *{
   	     border: none;
   	     border-radius: 0;
+  	     font-family: "Symbols Nerd Font Mono", "JetBrainsMono Nerd Font", "JetBrainsMonoNF", monospace;
+  	     font-size: 13px;
   	    }
 
 		window#waybar {
@@ -42,7 +77,7 @@ in
 			transition: none;
 		}
   	    
-	    #workspaces #battery, #network, #cpu, #memory, #tray {
+	    #workspaces #battery, #network, #cpu, #memory, #tray, #network-vpn, #pulseaudio {
 			padding: 0 15px;
 			margin: 4px 4px;
 			border-radius: 15px;
@@ -68,7 +103,16 @@ in
 		#workspaces button.focused {
 			color: ${colors.palette.accent};
 			background-color: ${colors.palette.bg_alt};
-			border-bottom: 2px solid ${colors.palette.accent};
+			border-bottom: 1px solid ${colors.palette.accent};
+		}
+
+		#network-vpn {
+			font-family: "Symbols Nerd Font Mono", "JetBrainsMono Nerd Font";
+		}
+
+		#network-vpn.disconnected {
+			color: #bf616a;
+			font-weight: bold;
 		}
   	'';
   };

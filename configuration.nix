@@ -10,6 +10,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./modules/network/vpn.nix
+      ./modules/desktop/font.nix
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -39,12 +40,19 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "fr_FR.UTF-8";
+	i18n.defaultLocale = "fr_FR.UTF-8";
 
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "fr_FR.UTF-8";
-  };
-
+	i18n.extraLocaleSettings = {
+	  LC_ADDRESS = "fr_FR.UTF-8";
+	  LC_IDENTIFICATION = "fr_FR.UTF-8";
+	  LC_MEASUREMENT = "fr_FR.UTF-8";
+	  LC_MONETARY = "fr_FR.UTF-8";
+	  LC_NAME = "fr_FR.UTF-8";
+	  LC_NUMERIC = "fr_FR.UTF-8";
+	  LC_PAPER = "fr_FR.UTF-8";
+	  LC_TELEPHONE = "fr_FR.UTF-8";
+	  LC_TIME = "fr_FR.UTF-8"; # C'est cette ligne qui gère le format de la date
+	};
  #  console = {
  #   font = "Lat2-Terminus16";
  #   keyMap = "fr";
@@ -112,6 +120,7 @@
   #   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #   wget
     git
+    wl-clipboard
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
