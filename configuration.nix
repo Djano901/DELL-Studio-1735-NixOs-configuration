@@ -9,6 +9,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      
       ./modules/network/vpn.nix
       ./modules/desktop/font.nix
     ];

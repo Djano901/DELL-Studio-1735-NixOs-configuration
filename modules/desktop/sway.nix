@@ -92,11 +92,11 @@ in
 	  };
       
 	  startup = [
-	  	{
-	  		command = "pkill swaybg; ${pkgs.swaybg}/bin/swaybg -i /home/Jean/wallpaper/gargantua.jpg -m fill";
-	  		always = true;
-	  	}
+	  	{ command = "pkill swaybg; ${pkgs.swaybg}/bin/swaybg -i /home/Jean/wallpaper/gargantua.jpg -m fill"; always = true; }
+	  	# { command = "waybar"; always = true; }
 	  ];
+
+	  bars = [];
 	  
 	  menu = "${pkgs.fuzzel}/bin/fuzzel";
 	  
@@ -163,7 +163,7 @@ in
 	        "${mod}+Shift+egrave" = "move container to workspace number 7";
 	        "${mod}+Shift+underscore" = "move container to workspace number 8";
 	        "${mod}+Shift+ccedilla" = "move container to workspace number 9";
-	        "${mod}+Shift+agrave" = "move container to workspace number 10";                
+	 	       "${mod}+Shift+agrave" = "move container to workspace number 10";                
 	      };
 
       input = {

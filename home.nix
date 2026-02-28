@@ -7,6 +7,7 @@
   	./modules/desktop/firefox.nix
   	./modules/dev/ssh.nix
   	./modules/dev/git.nix
+  	./modules/dev/tools.nix
   ];
 
 
@@ -18,11 +19,23 @@
     htop
     neofetch
     micro
+    pavucontrol
   ];
 
-  home.sessionVariables = {
-    EDITOR = "micro";
-  };
+  programs.yazi = {
+      enable = true;
+      enableBashIntegration = true; # Permet de changer de répertoire dans le shell en quittant yazi
+      settings = {
+        manager = {
+          show_hidden = true;
+          sort_by = "alphabetical";
+        };
+      };
+    };
+
+  # home.sessionVariables = {
+  #   EDITOR = "micro";
+  # };
 
   programs.home-manager.enable = true;
 

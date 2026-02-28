@@ -4,14 +4,17 @@
 	fonts.packages = with pkgs; [
 		nerd-fonts.jetbrains-mono
 		font-awesome
-		material-icons	
+		material-icons
+		iosevka	
 	];
 
 	fonts.fontconfig = {
 		enable = true;
 		defaultFonts = {
-			monospace = [ "JetBrainsMono Nerd Font" ];
-			sansSerif = [ "JetBrainsMono Nerd Font" ];
+			monospace = [ "Iosevka Nerd Font" ];
+			sansSerif = [ "Iosevka Nerd Font" ];
+			# monospace = [ "JetBrainsMono Nerd Font" ];
+			# sansSerif = [ "JetBrainsMono Nerd Font" ];
 		};
 	};
 	

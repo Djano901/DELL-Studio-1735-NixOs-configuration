@@ -11,7 +11,7 @@ in
   		mainBar = {
   			layer = "top";
   			position = "top";
-  			height = 20;
+  			height = 16;
   			modules-left = [ "sway/workspaces" "sway/mode" ];
   			modules-center = [ "clock" ];
   			modules-right = [ "cpu" "memory" "network#vpn" "battery" "pulseaudio" "tray"];
@@ -34,10 +34,15 @@ in
 			};
 
 			"sway/workspaces" = {
-				format = "{name}";
+				format = "{icon}";
 				all-outputs = true;
 				focused-only = false;
 				disable-scroll = true;
+				format-icons = {
+					"default" = "○";  # Cercle vide pour les bureaux inactifs
+					"focused" = "●";  # Point plein pour le bureau actif
+					"urgent" = "";
+				};
 			};
 
 			"clock" = {
@@ -78,9 +83,9 @@ in
 		}
   	    
 	    #workspaces #battery, #network, #cpu, #memory, #tray, #network-vpn, #pulseaudio {
-			padding: 0 15px;
-			margin: 4px 4px;
-			border-radius: 15px;
+			padding: 0 8px;
+			margin: 2px 4px;
+			border-radius: 10px;
 			color : ${colors.palette.fg_main};
 			background-color: ${colors.palette.bg_alt};
 		}
@@ -90,20 +95,30 @@ in
 			background-color: ${colors.palette.bg_main};
 		}
 
+
 		#workspaces button {
-			margin: 4px 2px;
-			border-radius: 10px;
-			background: transparent;
-			border: none;
-			box-shadow: none;
-			text-shadow: none;
-			color: ${colors.palette.fg_main};
+		    padding: 0 2px;          /* Réduit l'espace entre les points */
+		    margin: 0 1px;
+		    font-size: 10px;         /* Points légèrement plus petits que le texte */
+		    color: ${colors.palette.fg_muted}; /* Points inactifs discrets  */
+		    background: transparent;
+		    border: none;
+		    box-shadow: none;
 		}
 
 		#workspaces button.focused {
-			color: ${colors.palette.accent};
-			background-color: ${colors.palette.bg_alt};
-			border-bottom: 1px solid ${colors.palette.accent};
+		    color: ${colors.palette.accent}; /* Le point actif prend la couleur d'accent  */
+		    background: transparent;        /* Pas de fond pour rester aérien */
+		    border: none;                   /* On retire la bordure basse pour la finesse */
+		}
+
+		#workspaces button.urgent {
+		    color: ${colors.palette.urgent}; /* Rouge pour les alertes  */
+		}
+
+		#workspaces button label {
+			padding: 0;
+			margin: 0;
 		}
 
 		#network-vpn {
