@@ -1,0 +1,10 @@
+*.age
+*.pem
+/keys/
+
+.merge_file_*
+*~
+*.swp
+
+result
+*.log

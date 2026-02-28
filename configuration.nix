@@ -9,6 +9,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./modules/network/vpn.nix
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -125,6 +126,16 @@
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
+
+  services.openssh = {
+  	enable = true;
+  	hostKeys = [
+  		{
+  			path = "/etc/ssh/ssh_host_ed25519_key";
+  			type = "ed25519";
+  		}
+  	];
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
