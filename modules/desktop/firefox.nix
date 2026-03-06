@@ -30,7 +30,11 @@ in
 				"uBlock0@raymondhill.net" = {
 					install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
 					installation_mode = "force_installed";
-				};
+					};
+				# "firefox@mehrwas" = {
+				# 	install_url = "https://addons.mozilla.org/firefox/downloads/latest/multi-account-containers/latest.xpi";
+				# 	installation_mode = "force_installed";
+				# 	};
 			};			
 		};
 		
@@ -134,6 +138,9 @@ in
 				"extensions.autoDisableScopes" = 0;
 				"extensions.enabledScope" = 15;
 				
+				# Réseau :
+				"network.trr.mode" = 5; # Désactive le DNS du navigateur
+				"network.dns.disableIPv6" = true;
 			};
 
 			# extraConfig = ''

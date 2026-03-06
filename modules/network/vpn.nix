@@ -40,10 +40,13 @@
 		
 			TOKEN=$(cat ${config.sops.secrets.nordvpn_token.path})
 			${pkgs.wgnord}/bin/wgnord login "$TOKEN"
+			${pkgs.wgnord}/bin/wgnord connect
 		'';
 	};
 
 	systemd.tmpfiles.rules = [
 		"d /etc/wireguard 0700 root root -"
 	];
+
+	networking.firewall.allowedUDPPorts = [ 51820 ];
 }
