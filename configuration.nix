@@ -11,7 +11,7 @@
       ./hardware-configuration.nix
       
       ./modules/network/vpn.nix
-      ./modules/network/dns.nix
+      # ./modules/network/dns.nix
       ./modules/desktop/font.nix
     ];
 
