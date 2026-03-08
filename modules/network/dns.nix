@@ -8,17 +8,10 @@
   ];
 
   networking = {
-    # 1. On définit les DNS NordVPN au niveau global (Source: NordVPN Official)
-    nameservers = [ 
-      "103.86.96.100" 
-      "103.86.99.100" 
-    ];
-
-    # 2. On empêche NetworkManager d'écraser la config avec les DNS de ta Box
     networkmanager.dns = "systemd-resolved";
     
-    # 3. Optionnel : Si tu veux un "Kill Switch" DNS total au niveau DHCP
-    dhcpcd.extraConfig = "nohook resolv.conf";
+    # Optionnel : Si tu veux un "Kill Switch" DNS total au niveau DHCP
+    # dhcpcd.extraConfig = "nohook resolv.conf";
   };
 
   # 4. Configuration de systemd-resolved (le gestionnaire intelligent)
@@ -27,17 +20,25 @@
     # DNS-over-TLS : NordVPN ne le supporte pas nativement sur ces IPs, 
     # donc on le laisse en "opportuniste" ou désactivé pour éviter les blocages.
     # dnsoverhttps = "false";
-    dnssec = "allow-downgrade";
+    dnsovertls = "true";
+    #dnssec = "allow-downgrade";
     
     # Évite de retomber sur les DNS de Google si NordVPN est injoignable
-    fallbackDns = [ "9.9.9.9" ]; 
+    fallbackDns = [ "9.9.9.9" "149.112.112.112" ]; 
     
-    extraConfig = ''
-      DNSOverHTTPS=no
-      DNSStubListener=yes
-      ReadEtcHosts=yes
-    '';
+    # extraConfig = ''
+    #   DNSOverHTTPS=no
+    #   DNSStubListener=yes
+    #   ReadEtcHosts=yes
+    # '';
   };
+
+  environment.etc."systemd/resolved.conf.d/quad9.conf".text = ''
+	[Resolve]
+	DNS=9.9.9.9#dns.quad9.net 149.112.112.112#dns.quad9.net
+	Domains=~.
+	DNSStubListener=yes
+	'';
 
   # 5. Intégration Arkenfox via Home-Manager
   # On force Firefox à respecter le DNS système au lieu de son propre DoH

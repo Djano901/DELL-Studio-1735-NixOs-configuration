@@ -11,7 +11,7 @@
       ./hardware-configuration.nix
       
       ./modules/network/vpn.nix
-      # ./modules/network/dns.nix
+      ./modules/network/dns.nix
       ./modules/desktop/font.nix
     ];
 
@@ -33,6 +33,8 @@
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
   networking.hostName = "nix-dell";
+  
+  services.resolved.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Paris";
@@ -139,7 +141,7 @@
   # services.openssh.enable = true;
 
   services.openssh = {
-  	enable = true;
+  	enable = false;
   	hostKeys = [
   		{
   			path = "/etc/ssh/ssh_host_ed25519_key";
